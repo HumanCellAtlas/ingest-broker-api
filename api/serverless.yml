@@ -1,0 +1,25 @@
+service: ${self:custom.ingest-broker.name}-api
+
+frameworkVersion: ">=1.0.0 <2.0.0"
+
+custom:
+  ingest-broker: ${file(../ingest-broker.yml)}
+  private: ${file(../private.yml)}
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  region: ${self:custom.private.region}
+  environment:
+    INGEST_API_URL: ${self:custom.private.ingest-api-url}
+
+functions:
+  listSubmissions:
+    handler: handler.listSubmissions
+    events:
+      - http:
+          path: submissions
+          method: get
+          cors: true
+
+

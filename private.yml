@@ -1,0 +1,2 @@
+region: eu-west-2
+ingest-api-url: http://api.ingest.dev.data.humancellatlas.org

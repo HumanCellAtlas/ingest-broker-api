@@ -5,8 +5,10 @@ info:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   version: 0.1.0
+host: kcvoh6ipu0.execute-api.eu-west-2.amazonaws.com
+basePath: /dev
 schemes:
-  - http
+  - https
 consumes:
   - application/json
 produces:
