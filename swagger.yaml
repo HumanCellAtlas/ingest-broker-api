@@ -1,0 +1,151 @@
+swagger: '2.0'
+info:
+  title: HCA Ingest Broker API
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 0.1.0
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /submissions:
+    post:
+      description: Create a new submission returning the submission uuid
+      responses:
+        201:
+          description: New submission created successfully
+    get:
+      description: Get all submissions
+      responses:
+        200:
+          description: OK
+  /submissions/{uuid}/upload:
+    post:
+      description: Upload a completed spreadsheet
+      responses:
+        200:
+          description: OK
+    parameters:
+      - name: uuid
+        in: path
+        description: submission uuid
+        required: true
+        type: string
+  /submissions/{uuid}/samples/validate:
+    post:
+      description: Validate a sample
+      responses:
+        200:
+          description: OK
+    parameters:
+      - name: uuid
+        in: path
+        description: submission uuid
+        required: true
+        type: string
+  /submissions/{uuid}/complete:
+    post:
+      description: Complete the submission
+      responses:
+        200:
+          description: OK
+    parameters:
+      - name: uuid
+        in: path
+        description: submission uuid
+        required: true
+        type: string
+  /submissions/{uuid}/delete-staging:
+    post:
+      description: Delete the staging area for the submission
+      responses:
+        200:
+          description: OK
+    parameters:
+      - name: uuid
+        in: path
+        description: submission uuid
+        required: true
+        type: string
+  /submissions/{uuid}/project:
+    get:
+      description: Get project for the submission
+      responses:
+        200:
+          description: OK
+    parameters:
+      - name: uuid
+        in: path
+        description: submission uuid
+        required: true
+        type: string
+  /submissions/{uuid}/samples:
+    get:
+      description: Get samples for the submission
+      responses:
+        200:
+          description: OK
+    parameters:
+      - name: uuid
+        in: path
+        description: submission uuid
+        required: true
+        type: string
+  /submissions/{uuid}/samples/{sample-uuid}/accession:
+    get:
+      description: Get samples for the submission
+      responses:
+        200:
+          description: OK
+    parameters:
+      - name: uuid
+        in: path
+        description: submission uuid
+        required: true
+        type: string
+      - name: sample-uuid
+        in: path
+        description: sample uuid
+        required: true
+        type: string
+  /submissions/{uuid}/files:
+    get:
+      description: Get files for the submission
+      responses:
+        200:
+          description: OK
+    parameters:
+      - name: uuid
+        in: path
+        description: submission uuid
+        required: true
+        type: string
+  /submissions/{uuid}/analyses:
+    get:
+      description: Get analyses for the submission
+      responses:
+        200:
+          description: OK
+    parameters:
+      - name: uuid
+        in: path
+        description: submission uuid
+        required: true
+        type: string
+  /submissions/{uuid}/bundles:
+    get:
+      description: Get bundles for the submission
+      responses:
+        200:
+          description: OK
+    parameters:
+      - name: uuid
+        in: path
+        description: submission uuid
+        required: true
+        type: string
+
