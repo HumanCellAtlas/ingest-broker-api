@@ -14,6 +14,13 @@ provider:
     INGEST_API_URL: ${self:custom.private.ingest-api-url}
 
 functions:
+  createSubmission:
+    handler: handler.createSubmission
+    events:
+      - http:
+          path: submissions
+          method: post
+          cors: true
   listSubmissions:
     handler: handler.listSubmissions
     events:
@@ -21,5 +28,14 @@ functions:
           path: submissions
           method: get
           cors: true
-
-
+  listFiles:
+    handler: handler.listFiles
+    events:
+      - http:
+          path: submissions/{uuid}/files
+          method: get
+          cors: true
+          request:
+            parameters:
+              paths:
+                uuid: true

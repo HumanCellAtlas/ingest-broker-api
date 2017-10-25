@@ -15,8 +15,18 @@ Single function:
 serverless deploy function -f functionName
 ```
 
+Single function with event:
+```
+serverless invoke local --function listFiles --path ./example-requests/listFiles.json
+```
+
 ## Run locally
 serverless invoke local --function functionName
 
 ## Run remotely
 serverless invoke --function functionName
+
+## View logs
+```
+serverless logs -f listFiles
+```
