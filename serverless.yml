@@ -1,0 +1,45 @@
+service: ${self:custom.ingest-broker.name}-api
+
+frameworkVersion: ">=1.0.0 <2.0.0"
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  ingest-broker: ${file(ingest-broker.yml)}
+  private: ${file(private.yml)}
+
+provider:
+  name: aws
+  runtime: python3.6
+  region: ${self:custom.private.region}
+  stage: ${self:custom.private.stage}
+  environment:
+    INGEST_API: ${self:custom.private.ingest-api-url}
+
+functions:
+  createSubmission:
+    handler: handler.create_submission
+    events:
+      - http:
+          path: submissions
+          method: post
+          cors: true
+  listSubmissions:
+    handler: handler.list_submissions
+    events:
+      - http:
+          path: submissions
+          method: get
+          cors: true
+  listFiles:
+    handler: handler.list_files
+    events:
+      - http:
+          path: submissions/{uuid}/files
+          method: get
+          cors: true
+          request:
+            parameters:
+              paths:
+                uuid: true
